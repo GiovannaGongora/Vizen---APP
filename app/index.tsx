@@ -1,5 +1,6 @@
 // app/index.tsx
 import { router } from "expo-router";
+import { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -10,6 +11,22 @@ import {
 } from "react-native";
 
 export default function HomeScreen() {
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+
+  const logar = () => {
+    if (user === "" || password === "") {
+      alert("preencha usuario e senha");
+      return;
+    } else {
+      router.push("/timeline");
+    }
+    if (user === "admin" && password === "admin") {
+      alert("LOGADO COMO ADM");
+      router.push("/timeline");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerImg}>
@@ -20,13 +37,24 @@ export default function HomeScreen() {
       </View>
       <View style={styles.box}>
         <Text style={styles.title}>Entrar</Text>
-        <TextInput placeholder="User" style={styles.input} />
-        <TextInput placeholder="Senha" style={styles.input} />
-        <Text onPress={() => router.push("./")} style={styles.boxTexto}>
+        <TextInput
+          placeholder="User"
+          style={styles.input}
+          value={user}
+          onChangeText={setUser}
+        />
+        <TextInput
+          placeholder="Senha"
+          style={styles.input}
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+        <Text onPress={() => router.push("./cadastro")} style={styles.boxTexto}>
           Cadastre-se
         </Text>
         <Text style={styles.boxTexto}>Esqueci minha senha</Text>
-        <TouchableOpacity style={styles.btNentrar}>
+        <TouchableOpacity style={styles.btNentrar} onPress={logar}>
           <Text
             style={{
               color: "white",

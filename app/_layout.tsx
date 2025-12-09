@@ -18,7 +18,8 @@ export default function RootLayout() {
       */}
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="cadastro" options={{ headerShown: false }} />
-
+      <Stack.Screen name="timeline" options={{ headerShown: false }} />
+      <Stack.Screen name="avisos" options={{ headerShown: false }} />
       {/* 3. Se houver outras rotas que você queira configurar individualmente, 
            como 'modal.tsx' (se você o tivesse), faria isso aqui:
            
