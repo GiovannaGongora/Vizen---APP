@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
@@ -43,10 +44,9 @@ export default function Timeline() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* HEADER */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => setOpenMenu(true)}>
-          <View style={styles.hamburger} />
+          <Ionicons name="menu" size={32} color="#fff" />
         </TouchableOpacity>
         <View style={styles.textoHeader}>
           <Text style={styles.headerName}>Giovanna - Swift</Text>
@@ -56,7 +56,6 @@ export default function Timeline() {
         <View style={styles.profile} />
       </View>
 
-      {/* CONTENT */}
       <FlatList
         style={{ flex: 1 }}
         data={posts}
@@ -89,7 +88,12 @@ export default function Timeline() {
             >
               Avisos e Eventos
             </Text>
-            <Text style={styles.menuItem}>Boletos e Multas</Text>
+            <Text
+              style={styles.menuItem}
+              onPress={() => router.push("./pagamentos")}
+            >
+              Boletos e Multas
+            </Text>
             <Text style={styles.menuItem}>Timeline</Text>
             <Text style={styles.menuItem}>Minhas Encomendas</Text>
             <Text style={styles.menuItem}>Minhas Reservas</Text>

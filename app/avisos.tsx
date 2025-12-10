@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { useState } from "react";
 import {
   SafeAreaView,
@@ -13,10 +14,9 @@ export default function Avisos() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* HEADER */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => setOpenMenu(true)}>
-          <View style={styles.hamburger} />
+          <Ionicons name="menu" size={32} color="#fff" />
         </TouchableOpacity>
 
         <View style={styles.textoHeader}>
@@ -27,7 +27,6 @@ export default function Avisos() {
         <View style={styles.profile} />
       </View>
 
-      {/* ICON WARNING */}
       <Ionicons
         name="warning"
         size={42}
@@ -35,28 +34,40 @@ export default function Avisos() {
         style={{ marginTop: 30 }}
       />
 
-      {/* TITLE */}
       <Text style={styles.title}>AVISOS DO MÊS</Text>
 
-      {/* BLOCO CINZA */}
       <View style={styles.boxAviso} />
 
-      {/* MENU */}
       {openMenu && (
-        <TouchableOpacity
-          style={styles.overlay}
-          activeOpacity={1}
-          onPress={() => setOpenMenu(false)}
-        >
+        <View style={styles.overlay}>
+          <TouchableOpacity
+            style={StyleSheet.absoluteFill}
+            activeOpacity={1}
+            onPress={() => setOpenMenu(false)}
+          />
+
           <View style={styles.sidebar}>
             <Text style={styles.menuItem}>Avisos e Eventos</Text>
-            <Text style={styles.menuItem}>Boletos e Multas</Text>
-            <Text style={styles.menuItem}>Timeline</Text>
+
+            <Text
+              style={styles.menuItem}
+              onPress={() => router.push("./pagamentos")}
+            >
+              Boletos e Multas
+            </Text>
+
+            <Text
+              style={styles.menuItem}
+              onPress={() => router.push("./timeline")}
+            >
+              Timeline
+            </Text>
+
             <Text style={styles.menuItem}>Minhas Encomendas</Text>
             <Text style={styles.menuItem}>Minhas Reservas</Text>
             <Text style={styles.menuItem}>Assembleia</Text>
           </View>
-        </TouchableOpacity>
+        </View>
       )}
     </SafeAreaView>
   );
